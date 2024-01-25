@@ -1,0 +1,13 @@
+{
+  "http": {
+    "port": 8080
+  },
+  "mongodb": {
+    "connection_string": "mongodb://localhost:27017",
+    "collection_name": "arturkus",
+    "db_name": "vertx-crud"
+  },
+  "jwt": {
+    "secret": "TestSecretPassword"
+  }
+}

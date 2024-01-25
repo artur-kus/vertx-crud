@@ -1,0 +1,77 @@
+= VertX CRUD
+
+image:https://img.shields.io/badge/vert.x-4.5.0-purple.svg[link="https://vertx.io"]
+
+This application was generated using http://start.vertx.io
+
+== Building
+
+To launch application by terminal:
+```
+1. mvn package
+2. mvn exec:java
+```
+
+To run in docker:
+```
+1. Open project folder in terminal.
+2. Use: mvn package
+3. Create docker compose file.
+
+Example of docker compose:
+
+version: '3'
+
+services:
+  vertx-crud-mongo-db:
+    image: mongo
+    container_name: vertx-crud-mongo-db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  vertx-crud-be:
+    build:
+      context: ./be
+      dockerfile: Dockerfile
+    image: vertx-crud-backend:latest
+    ports:
+      - "8080:8080"
+
+volumes:
+  mongodb_data:
+    driver: local
+
+4. Use: docker compose up -t
+```
+
+To generating keystore.jecks
+```
+keytool -genseckey -keystore keystore.jceks -storetype jceks -storepass TestSecretPassword -keyalg HMacSHA256 -keysize 2048 -alias HS256 -keypass TestSecretPassword
+```
+
+To launch your tests:
+```
+./mvnw clean test
+```
+
+To package your application:
+```
+./mvnw clean package
+```
+
+To run your application:
+```
+./mvnw clean compile exec:java
+```
+
+== Help
+
+* https://vertx.io/docs/[Vert.x Documentation]
+* https://stackoverflow.com/questions/tagged/vert.x?sort=newest&pageSize=15[Vert.x Stack Overflow]
+* https://groups.google.com/forum/?fromgroups#!forum/vertx[Vert.x User Group]
+* https://discord.gg/6ry7aqPWXy[Vert.x Discord]
+* https://gitter.im/eclipse-vertx/vertx-users[Vert.x Gitter]
+
+
